@@ -9,4 +9,5 @@ data class Ljubimac(
     val id: Int,
     val ime: String,
     val imeLatinsko: String,
+    val urlSlika: String,
 )
