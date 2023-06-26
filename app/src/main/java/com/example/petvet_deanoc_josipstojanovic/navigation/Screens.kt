@@ -5,4 +5,5 @@ sealed class Screens(val route: String) {
     object PocetnaStranica: Screens("pocetnaStranica_screen")
     object Savjetovaliste: Screens("savjetovaliste_screen")
     object Stanice: Screens("stanice_screen")
+    object Detalji: Screens("detalji_screen")
 }

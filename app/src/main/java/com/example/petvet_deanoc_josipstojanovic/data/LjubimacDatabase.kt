@@ -6,7 +6,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Ljubimac::class], version = 2, exportSchema = false)
+@Database(entities = [Ljubimac::class], version = 6, exportSchema = false)
 abstract class LjubimacDatabase: RoomDatabase() {
 
     abstract fun ljubimacDao(): LjubimacDao
@@ -25,7 +25,7 @@ abstract class LjubimacDatabase: RoomDatabase() {
                     context.applicationContext,
                     LjubimacDatabase::class.java,
                     "ljubimac_database"
-                ).fallbackToDestructiveMigration().build()
+                ).fallbackToDestructiveMigration().createFromAsset("database/ljubimac_database.db").build()
                 INSTANCE = instance
                 return instance
             }

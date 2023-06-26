@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
     val ljubimacViewModel: LjubimacViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ljubimacViewModel.populateDb()
+
         super.onCreate(savedInstanceState)
 
 

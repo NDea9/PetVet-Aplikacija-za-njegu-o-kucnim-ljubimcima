@@ -9,7 +9,7 @@ import com.example.petvet_deanoc_josipstojanovic.data.LjubimacViewModel
 import com.example.petvet_deanoc_josipstojanovic.screens.stanice.StaniceScreen
 import com.example.petvet_deanoc_josipstojanovic.screens.savjetovaliste.SavjetovalisteScreen
 import com.example.petvet_deanoc_josipstojanovic.screens.pocetna.PocetnaStranicaScreen
-
+import com.example.petvet_deanoc_josipstojanovic.screens.detalji.DetaljiScreen
 
 @Composable
 fun NavGraph (navController: NavHostController, viewModel: LjubimacViewModel){
@@ -25,6 +25,9 @@ fun NavGraph (navController: NavHostController, viewModel: LjubimacViewModel){
         }
         composable(route = Screens.Stanice.route){
             StaniceScreen()
+        }
+        composable(route = Screens.Detalji.route){
+            DetaljiScreen()
         }
     }
 }

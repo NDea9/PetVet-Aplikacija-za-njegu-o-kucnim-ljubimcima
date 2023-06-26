@@ -51,7 +51,6 @@ fun PocetnaStranicaScreen(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(),
                 modifier = Modifier.padding(5.dp),
                 onClick = {
-                    //TODO: Navigate to Home Screen
                     navController.navigate(Screens.Savjetovaliste.route)
                 }
             ) {

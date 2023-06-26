@@ -10,4 +10,9 @@ data class Ljubimac(
     val ime: String,
     val imeLatinsko: String,
     val urlSlika: String,
+    val detaljanOpis: String,
+    val omiljenaHrana: String,
+    val dnevnaHrana: String,
+    val dnevnaVoda: String,
+    val potrebanProstor: String,
 )
