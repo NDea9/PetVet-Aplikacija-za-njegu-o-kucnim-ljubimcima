@@ -48,6 +48,12 @@ android {
 }
 
 dependencies {
+
+    //Map
+    implementation 'org.osmdroid:osmdroid-android:6.1.11'
+    implementation 'org.osmdroid:osmdroid-wms:6.1.11'
+    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.11'
+
     //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-scripting:1.6.0'
     implementation 'org.jetbrains.kotlin:kotlin-script-util:1.5.30'
     implementation("io.coil-kt:coil-compose:2.4.0")
