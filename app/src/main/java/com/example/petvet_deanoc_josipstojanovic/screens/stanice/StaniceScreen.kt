@@ -14,12 +14,69 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.petvet_deanoc_josipstojanovic.R
 
+
+import androidx.compose.ui.viewinterop.AndroidView
+import org.osmdroid.views.MapView
+
+
 @Composable
 fun StaniceScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Gray),
+            .background(Color.Transparent),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Prikaz obližnjih veterinarskih stanica",
+                fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        Row{
+            Box(
+                modifier = Modifier
+                    //.fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                AndroidView(
+                    factory = { context ->
+                        MapView(context).apply {
+                            setMultiTouchControls(false)
+                            // Initialize the map
+                            controller.setZoom(8.0)
+                            controller.setCenter(org.osmdroid.util.GeoPoint(0.0, 0.0))
+                        }
+                            },
+                    //modifier = Modifier.fillMaxSize()
+                )
+            }
+        }
+
+    }
+}
+
+@Preview
+@Composable
+fun StaniceScreenPreview() {
+    StaniceScreen()
+}
+
+
+/*
+@Composable
+fun StaniceScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Transparent),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -43,3 +100,4 @@ fun StaniceScreen() {
 fun StaniceScreenPreview() {
     StaniceScreen()
 }
+*/
