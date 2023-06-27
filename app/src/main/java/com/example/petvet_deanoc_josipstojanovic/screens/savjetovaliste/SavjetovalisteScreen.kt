@@ -34,7 +34,9 @@ import com.example.petvet_deanoc_josipstojanovic.navigation.Screens
 
 
 @Composable
-fun SavjetovalisteScreen(navController: NavController, viewModel: LjubimacViewModel) {
+fun SavjetovalisteScreen(navController: NavController, viewModel: LjubimacViewModel,
+                            onNavigateToDetaljiScreen: (Int)->Unit
+) {
 
     //viewModel.populateDb()
 
@@ -44,25 +46,90 @@ fun SavjetovalisteScreen(navController: NavController, viewModel: LjubimacViewMo
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Transparent),
+            .background(Color.Gray),
         //verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.Center,
-            ){
-            Text(
-                stringResource(id = R.string.naslov_1_savjetovaliste),
-                fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                fontWeight = FontWeight.Bold
-            )
-        }
+
         LazyColumn{
             items(lista_ljubimaca_objekata){
-                ljubimac -> prikazTransform(ljubimac, navController)
+                ljubimac ->
+
+
+
+
+                Button (
+                    shape = MaterialTheme.shapes.medium,
+                    colors = ButtonDefaults.buttonColors(),
+                    modifier = Modifier.padding(5.dp),
+                    onClick = {
+                        onNavigateToDetaljiScreen(ljubimac.id)
+                    //navController.navigate(Screens.Detalji.route)
+                    }
+                ){
+                    Row(
+                        modifier = Modifier
+                            .padding(2.dp)
+                            .fillMaxSize(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "${ljubimac.ime}\nlat. ${ljubimac.imeLatinsko}",
+                            fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                        )
+
+                        val context = LocalContext.current
+                        val slikaId = remember(ljubimac.urlSlika) {
+                            context.resources.getIdentifier(
+                                ljubimac.urlSlika,
+                                "drawable",
+                                context.packageName
+                            )
+                        }
+
+                        Image(
+                            painterResource(id = slikaId) ,
+                            contentDescription = "Jedna od zivotinja",
+                            modifier = Modifier.size(width = 100.dp, height = 100.dp)
+                        )
+                    }
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             }
         }
@@ -71,43 +138,6 @@ fun SavjetovalisteScreen(navController: NavController, viewModel: LjubimacViewMo
 @Composable
 fun prikazTransform(item: Ljubimac, navController: NavController) {
 
-    Button (
-        shape = MaterialTheme.shapes.medium,
-        colors = ButtonDefaults.buttonColors(),
-        modifier = Modifier.padding(5.dp),
-        onClick = {
-            navController.navigate(Screens.Detalji.route)
-        }
-            ){
-        Row(
-            modifier = Modifier
-                .padding(2.dp)
-                .fillMaxSize(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "${item.ime}\nlat. ${item.imeLatinsko}",
-                fontSize = MaterialTheme.typography.headlineSmall.fontSize,
-            )
-
-            val context = LocalContext.current
-            val slikaId = remember(item.urlSlika) {
-                context.resources.getIdentifier(
-                    item.urlSlika,
-                    "drawable",
-                    context.packageName
-                )
-            }
-
-            Image(
-                painterResource(id = slikaId) ,
-                contentDescription = "Jedna od zivotinja",
-                modifier = Modifier.size(width = 100.dp, height = 100.dp)
-            )
-        }
-
-    }
 }
 
 @Composable

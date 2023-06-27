@@ -1,5 +1,6 @@
 package com.example.petvet_deanoc_josipstojanovic.screens.pocetna
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,29 +24,22 @@ import com.example.petvet_deanoc_josipstojanovic.R
 @Composable
 fun PocetnaStranicaScreen(navController: NavController) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Transparent),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text(
-                stringResource(id = R.string.naslov_0),
-                fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                fontWeight = FontWeight.Bold
+        Row{
+            Image(
+                painterResource(id = R.drawable.logo) ,
+                contentDescription = "Greeting photo",
+                modifier = Modifier.size(width = 500.dp, height = 300.dp)
             )
         }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
             horizontalArrangement = Arrangement.Center
+
         ) {
             Button(
                 shape = MaterialTheme.shapes.medium,
@@ -55,13 +50,14 @@ fun PocetnaStranicaScreen(navController: NavController) {
                 }
             ) {
                 Text(
-                    stringResource(id = R.string.gumb_1_savjetovaliste),
-                    modifier = Modifier.padding(5.dp),
-                    style = MaterialTheme.typography.labelMedium
+                    text = "Upoznajte raznolike vrste ljubimaca",
+                    fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                    fontWeight = FontWeight.Bold
                 )
             }
 
         }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -70,17 +66,17 @@ fun PocetnaStranicaScreen(navController: NavController) {
         ){
             Button(
                 shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.buttonColors(),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
                 modifier = Modifier.padding(5.dp),
                 onClick = {
-                    //TODO: Navigate to Home Screen
+
                     navController.navigate(Screens.Stanice.route)
                 }
             ){
                 Text(
-                    stringResource(id = R.string.gumb_2_obliznje_stanice),
-                    modifier = Modifier.padding(5.dp),
-                    style = MaterialTheme.typography.labelMedium
+                    text = "Pretražite veterinarske stanice",
+                    fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
