@@ -1,18 +1,16 @@
 package com.example.petvet_deanoc_josipstojanovic.screens.pocetna
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,6 +29,7 @@ fun PocetnaStranicaScreen(navController: NavController) {
                 painterResource(id = R.drawable.logo) ,
                 contentDescription = "Greeting photo",
                 modifier = Modifier.size(width = 500.dp, height = 300.dp)
+                    .testTag("testTag_PocetniZaslon_Logotip")
             )
         }
 
@@ -44,7 +43,8 @@ fun PocetnaStranicaScreen(navController: NavController) {
             Button(
                 shape = MaterialTheme.shapes.medium,
                 colors = ButtonDefaults.buttonColors(),
-                modifier = Modifier.padding(5.dp),
+                modifier = Modifier.padding(5.dp)
+                    .testTag("testTag_PocetniZaslon_PrviNavigacijskiButton"),
                 onClick = {
                     navController.navigate(Screens.Savjetovaliste.route)
                 }
@@ -67,7 +67,8 @@ fun PocetnaStranicaScreen(navController: NavController) {
             Button(
                 shape = MaterialTheme.shapes.medium,
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
-                modifier = Modifier.padding(5.dp),
+                modifier = Modifier.padding(5.dp)
+                    .testTag("testTag_drugi_navigacijskiButton"),
                 onClick = {
 
                     navController.navigate(Screens.Stanice.route)

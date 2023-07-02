@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -41,6 +42,7 @@ fun DetaljiScreen(param: Int, viewModel: LjubimacViewModel) {
     var potreban_prostor: String
     var slikaId: Int = -1
     var myList: List<String> = emptyList()
+    var id_ljubimca: Int = -1
     for (n in lista_ljubimaca_objekata){
         if (n.id == param){
              ljubimac = n
@@ -50,6 +52,7 @@ fun DetaljiScreen(param: Int, viewModel: LjubimacViewModel) {
              dnevna_hrana        = n.dnevnaHrana
              dnevna_voda         = n.dnevnaVoda
              potreban_prostor    = n.potrebanProstor
+             id_ljubimca         = n.id
 
             //ZA prikaz slike trebam id
             val context = LocalContext.current
@@ -69,7 +72,8 @@ fun DetaljiScreen(param: Int, viewModel: LjubimacViewModel) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Cyan),
+            .background(Color.Cyan)
+            .testTag("testTag_Detalji_o_ljubimcu"),
         //verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
 
@@ -88,6 +92,7 @@ fun DetaljiScreen(param: Int, viewModel: LjubimacViewModel) {
                             painterResource(id = slikaId) ,
                             contentDescription = "Jedna od zivotinja",
                             modifier = Modifier.size(width = 300.dp, height = 300.dp)
+                                .testTag("Slika_ljubimca_sa_ID_${id_ljubimca}")
                         )
                     }
                     else{

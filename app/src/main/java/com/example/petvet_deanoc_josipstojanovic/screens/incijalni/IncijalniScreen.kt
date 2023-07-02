@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.petvet_deanoc_josipstojanovic.navigation.Screens
 import com.example.petvet_deanoc_josipstojanovic.R
 import androidx.compose.material.icons.*
+import androidx.compose.ui.platform.testTag
 
 
 @Composable
@@ -37,6 +38,7 @@ fun IncijalniScreen(navController: NavController) {
                 painterResource(id = R.drawable.logo) ,
                 contentDescription = "Greeting photo",
                 modifier = Modifier.size(width = 400.dp, height = 400.dp)
+                      .testTag("testTag_IncijalniZaslon_Logotip")
             )
         }
         Row(
@@ -49,7 +51,8 @@ fun IncijalniScreen(navController: NavController) {
             Button(onClick = {navController.navigate(Screens.PocetnaStranica.route)},
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(5.dp),
+                    .padding(5.dp)
+                    .testTag("testTag_IncijalniZaslon_startButton"),
 
 
             )

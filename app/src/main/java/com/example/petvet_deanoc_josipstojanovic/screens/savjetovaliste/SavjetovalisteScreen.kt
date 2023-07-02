@@ -3,6 +3,7 @@ package com.example.petvet_deanoc_josipstojanovic.screens.savjetovaliste
 //import com.example.petvet_deanoc_josipstojanovic.navigation.Screens
 
 import android.media.Image
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -20,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -46,7 +48,8 @@ fun SavjetovalisteScreen(navController: NavController, viewModel: LjubimacViewMo
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Gray),
+            .background(Color.Gray)
+            .testTag("testTag_Savjetovaliste_Kolumna"),
         //verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -54,83 +57,46 @@ fun SavjetovalisteScreen(navController: NavController, viewModel: LjubimacViewMo
         LazyColumn{
             items(lista_ljubimaca_objekata){
                 ljubimac ->
+                    Button (
+                        shape = MaterialTheme.shapes.medium,
+                        colors = ButtonDefaults.buttonColors(),
+                        modifier = Modifier.padding(5.dp),
+                        onClick = {
+                            onNavigateToDetaljiScreen(ljubimac.id)
+                        //navController.navigate(Screens.Detalji.route)
+                        }
+                    ){
+                        Log.d("LJUBIMAC ID","ljub:$ljubimac.id")
+                        Row(
+                            modifier = Modifier
+                                .padding(2.dp)
+                                .fillMaxSize()
+                                .testTag("testTag_LjubimacID_${ljubimac.id}"),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "${ljubimac.ime}\nlat. ${ljubimac.imeLatinsko}",
+                                fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                            )
 
+                            val context = LocalContext.current
+                            val slikaId = remember(ljubimac.urlSlika) {
+                                context.resources.getIdentifier(
+                                    ljubimac.urlSlika,
+                                    "drawable",
+                                    context.packageName
+                                )
+                            }
 
-
-
-                Button (
-                    shape = MaterialTheme.shapes.medium,
-                    colors = ButtonDefaults.buttonColors(),
-                    modifier = Modifier.padding(5.dp),
-                    onClick = {
-                        onNavigateToDetaljiScreen(ljubimac.id)
-                    //navController.navigate(Screens.Detalji.route)
-                    }
-                ){
-                    Row(
-                        modifier = Modifier
-                            .padding(2.dp)
-                            .fillMaxSize(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = "${ljubimac.ime}\nlat. ${ljubimac.imeLatinsko}",
-                            fontSize = MaterialTheme.typography.headlineSmall.fontSize,
-                        )
-
-                        val context = LocalContext.current
-                        val slikaId = remember(ljubimac.urlSlika) {
-                            context.resources.getIdentifier(
-                                ljubimac.urlSlika,
-                                "drawable",
-                                context.packageName
+                            Image(
+                                painterResource(id = slikaId) ,
+                                contentDescription = "Jedna od zivotinja",
+                                modifier = Modifier.size(width = 100.dp, height = 100.dp)
                             )
                         }
 
-                        Image(
-                            painterResource(id = slikaId) ,
-                            contentDescription = "Jedna od zivotinja",
-                            modifier = Modifier.size(width = 100.dp, height = 100.dp)
-                        )
                     }
-
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
         }
     }
