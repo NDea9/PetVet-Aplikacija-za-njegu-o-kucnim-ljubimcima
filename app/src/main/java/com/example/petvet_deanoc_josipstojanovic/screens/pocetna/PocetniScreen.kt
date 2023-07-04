@@ -81,6 +81,31 @@ fun PocetnaStranicaScreen(navController: NavController) {
                 )
             }
         }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            horizontalArrangement = Arrangement.Center
+        ){
+            Button(
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+                modifier = Modifier.padding(5.dp)
+                    .testTag("testTag_drugi_navigacijskiButton"),
+                onClick = {
+
+                    navController.navigate(Screens.Mojiljubimci.route)
+                }
+            ){
+                Text(
+                    text = "Evidencija stanja kućnih ljubimaca",
+                    fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+
     }
 }
 

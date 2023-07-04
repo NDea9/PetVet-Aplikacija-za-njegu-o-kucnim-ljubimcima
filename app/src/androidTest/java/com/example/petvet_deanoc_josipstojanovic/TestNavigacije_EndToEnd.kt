@@ -90,7 +90,7 @@ class TestNavigacije_EndToEnd{
             }
         }
         Espresso.pressBack()
-        Espresso.pressBack()
+
 
     }
 

@@ -14,6 +14,7 @@ import com.example.petvet_deanoc_josipstojanovic.screens.pocetna.PocetnaStranica
 import com.example.petvet_deanoc_josipstojanovic.screens.detalji.DetaljiScreen
 import android.util.Log
 import com.example.petvet_deanoc_josipstojanovic.screens.incijalni.IncijalniScreen
+import com.example.petvet_deanoc_josipstojanovic.screens.mojiljubimci.MojiljubimciScreen
 
 @Composable
 fun NavGraph (navController: NavHostController, viewModel: LjubimacViewModel){
@@ -50,6 +51,9 @@ fun NavGraph (navController: NavHostController, viewModel: LjubimacViewModel){
         ){
             val param = it.arguments?.getInt("my_param") ?: -1
             DetaljiScreen(param = param, viewModel)
+        }
+        composable(route = Screens.Mojiljubimci.route){
+            MojiljubimciScreen()
         }
     }
 }

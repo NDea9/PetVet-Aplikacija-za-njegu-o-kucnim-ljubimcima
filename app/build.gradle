@@ -48,6 +48,9 @@ android {
 }
 
 dependencies {
+
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     implementation "androidx.window:window:1.0.0"
     implementation "androidx.window:window-testing:1.0.0"
     androidTestImplementation "androidx.navigation:navigation-testing:2.6.0"
@@ -57,7 +60,6 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-wms:6.1.11'
     implementation 'org.osmdroid:osmdroid-mapsforge:6.1.11'
 
-    //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-scripting:1.6.0'
     implementation 'org.jetbrains.kotlin:kotlin-script-util:1.5.30'
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation 'androidx.fragment:fragment-ktx:1.6.0'
@@ -105,15 +107,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
 
-    //implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+
     implementation 'androidx.compose.runtime:runtime:1.4.3'
 
     implementation "androidx.compose.runtime:runtime-livedata:1.4.3"
 
-/*
-    // Kotlin components
 
-    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.1"//mod
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"*/
 }
