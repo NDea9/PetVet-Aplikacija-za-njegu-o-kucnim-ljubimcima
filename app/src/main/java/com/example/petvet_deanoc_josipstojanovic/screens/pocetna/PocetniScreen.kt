@@ -92,7 +92,7 @@ fun PocetnaStranicaScreen(navController: NavController) {
                 shape = MaterialTheme.shapes.medium,
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
                 modifier = Modifier.padding(5.dp)
-                    .testTag("testTag_drugi_navigacijskiButton"),
+                    .testTag("testTag_treci_navigacijskiButton"),
                 onClick = {
 
                     navController.navigate(Screens.Mojiljubimci.route)

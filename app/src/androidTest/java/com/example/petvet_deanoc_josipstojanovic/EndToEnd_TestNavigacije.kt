@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
@@ -26,7 +27,8 @@ import androidx.test.espresso.Espresso
 import com.example.petvet_deanoc_josipstojanovic.data.Ljubimac
 
 
-class TestNavigacije_EndToEnd{
+
+class EndToEnd_TestNavigacije{
     @get:Rule
     val composeTestRule = createComposeRule()
     private lateinit var navController: TestNavHostController
@@ -49,38 +51,62 @@ class TestNavigacije_EndToEnd{
     }
     @Test
     fun incijalniPocetnaSavjetovalisteDetalji(){
-
+        //  nalazimo se na incijalnomScreenu
+        //  navigacija sa incijalniScreen na pocetniScreen
+        //  vrši se klik na "zapocnimo avanturu" Button sa psećim šapama
         composeTestRule.onNodeWithTag("testTag_IncijalniZaslon_startButton")
             .performClick()
+        //  assertIsDisplayed se koristi da potvrdimo uspješnu navigaciju na pocetniScreen
         composeTestRule.onNodeWithTag("testTag_PocetniZaslon_Logotip")
             .assertIsDisplayed()
+            Thread.sleep(500)
+        //  navigacija sa pocetniScreen na savjetovalisteScreen
+        //  klik na prvi button u glavnom izborniku
         composeTestRule.onNodeWithTag("testTag_PocetniZaslon_PrviNavigacijskiButton")
             .performClick()
+        //  Provjera jesmo li se navigirali na savjetovalisteScreen?
+        //  tako da provjerimo da li se kolumna prikazuje
         composeTestRule.onNodeWithTag("testTag_Savjetovaliste_Kolumna")
             .assertIsDisplayed()
-
+            Thread.sleep(500)
+        //  vracamo se na pocetniScreen (simulira back button pressed)
         Espresso.pressBack()
-
+        //  klik na drugi button u izborniku - staniceScreen (str. sa google kartom)
         composeTestRule.onNodeWithTag("testTag_drugi_navigacijskiButton")
             .performClick()
+        //  prikazuje li se naslov iznad karte?
         composeTestRule.onNodeWithTag("testTag_row_sa_kartom")
             .assertIsDisplayed()
-
+            Thread.sleep(500)
+        // Povratak na pocetni screen
         Espresso.pressBack()
-
+        //  klik na treći button izbornika - Evidencija Ljubimaca
+        composeTestRule.onNodeWithTag("testTag_treci_navigacijskiButton")
+            .performClick()
+        // Potvrđujemo sa assertIsDisplayed
+        composeTestRule.onNodeWithText("Moji ljubimci: ")
+            .assertIsDisplayed()
+            Thread.sleep(500)
+        // Povratak na pocetniScreen
+        Espresso.pressBack()
+        // vracamo se u savjetovalisteScreen da testiramo klik na svakog ljubimca
         composeTestRule.onNodeWithTag("testTag_PocetniZaslon_PrviNavigacijskiButton")
             .performClick()
-
-        // klikanje na svakog ljubimca
+        // klikanje na svakog ljubimca prikazanog u savjetovalisteScreen
+        // touch input simulira korisnikov scroll
         for (i in 0 until broj_zivotinja){
-
             composeTestRule.onNodeWithTag("testTag_LjubimacID_${i}", useUnmergedTree = true)
                 .performClick()
             composeTestRule.onNodeWithTag("Slika_ljubimca_sa_ID_${i}", useUnmergedTree = true)
                 .assertIsDisplayed()
-
+            // nakon svakog otvaranja spava 0.5 sekunde
+            // (da se lakse vidi sta se događa)
+            Thread.sleep(400)
             Espresso.pressBack()
-            //skrolanje da bi se ostali elementi pojavili na ekranu
+            // Touch Input - da bi se screen scrolao
+            // ukoliko nešto nije vidljivo na screenu
+            // test nije u mogućnosti interaktirati s tim elementom
+            // mogli smo odabrati 5,6 ... bitno je da ima zaslona odozgo
             if(i == 4){
                 composeTestRule.onNodeWithTag("testTag_LjubimacID_4", useUnmergedTree = true)
                     .performTouchInput {
@@ -89,9 +115,9 @@ class TestNavigacije_EndToEnd{
                         up() }
             }
         }
+        // Povratak na incijalni zaslon
         Espresso.pressBack()
-
-
+        Espresso.pressBack()
+        Thread.sleep(500)
     }
-
 }
