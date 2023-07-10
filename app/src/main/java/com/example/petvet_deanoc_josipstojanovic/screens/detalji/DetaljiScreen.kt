@@ -83,7 +83,8 @@ fun DetaljiScreen(param: Int, viewModel: LjubimacViewModel) {
                 Row(
                     modifier = Modifier
                         .padding(25.dp)
-                        .fillMaxSize(),
+                        .fillMaxSize()
+                        ,
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ){
@@ -99,6 +100,7 @@ fun DetaljiScreen(param: Int, viewModel: LjubimacViewModel) {
                         Text(
                             text = "${polje}",
                             fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+
                         )
                     }
                 }
