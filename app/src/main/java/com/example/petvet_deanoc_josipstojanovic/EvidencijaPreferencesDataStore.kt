@@ -7,11 +7,12 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
-class EvidencijaDataStore(private val context: Context) {
+class EvidencijaPreferencesDataStore(private val context: Context) {
 
-    // to make sure there is only one instance
+
     companion object {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("KljučŽivotinja")
         val KLJUČ = stringPreferencesKey("ključ_zivotinja")
@@ -21,8 +22,19 @@ class EvidencijaDataStore(private val context: Context) {
         val KILAŽA = stringPreferencesKey("kilaža")
         val PREHRANA = stringPreferencesKey("prehrana")
     }
+    // vratiSveZap.. nije testirana! Ne radi 100 %
+    val vratiSveZapiseEvidencije: Flow<Preferences?> = context.dataStore.data
 
-    // to get the email
+    // readAllKeys nije testirana! Ne radi 100 %
+    suspend fun readAllKeys(): Set<Preferences.Key<*>>? {
+        val keys = context.dataStore.data
+            .map {
+                it.asMap().keys
+            }
+        return keys.firstOrNull()
+    }
+
+
     val getKljuč: Flow<String?> = context.dataStore.data
         .map { preferences ->
             preferences[KLJUČ] ?: ""

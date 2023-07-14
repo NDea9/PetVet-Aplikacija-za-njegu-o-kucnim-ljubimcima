@@ -12,9 +12,9 @@ import com.example.petvet_deanoc_josipstojanovic.screens.stanice.StaniceScreen
 import com.example.petvet_deanoc_josipstojanovic.screens.savjetovaliste.SavjetovalisteScreen
 import com.example.petvet_deanoc_josipstojanovic.screens.pocetna.PocetnaStranicaScreen
 import com.example.petvet_deanoc_josipstojanovic.screens.detalji.DetaljiScreen
-import android.util.Log
 import com.example.petvet_deanoc_josipstojanovic.screens.incijalni.IncijalniScreen
-import com.example.petvet_deanoc_josipstojanovic.screens.mojiljubimci.MojiljubimciScreen
+import com.example.petvet_deanoc_josipstojanovic.screens.formaevidencijska.FormaEvidencijska
+import com.example.petvet_deanoc_josipstojanovic.screens.zapisi.ZapisiScreen
 
 @Composable
 fun NavGraph (navController: NavHostController, viewModel: LjubimacViewModel){
@@ -52,8 +52,11 @@ fun NavGraph (navController: NavHostController, viewModel: LjubimacViewModel){
             val param = it.arguments?.getInt("my_param") ?: -1
             DetaljiScreen(param = param, viewModel)
         }
-        composable(route = Screens.Mojiljubimci.route){
-            MojiljubimciScreen()
+        composable(route = Screens.FormaEvidencijska.route){
+            FormaEvidencijska(navController)
+        }
+        composable(route = Screens.Zapisi.route){
+            ZapisiScreen()
         }
     }
 }

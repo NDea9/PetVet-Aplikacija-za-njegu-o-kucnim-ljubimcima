@@ -1,33 +1,37 @@
-package com.example.petvet_deanoc_josipstojanovic.screens.mojiljubimci
+package com.example.petvet_deanoc_josipstojanovic.screens.formaevidencijska
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petvet_deanoc_josipstojanovic.EvidencijaDataStore
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.navigation.NavController
+import com.example.petvet_deanoc_josipstojanovic.EvidencijaPreferencesDataStore
+import com.example.petvet_deanoc_josipstojanovic.navigation.Screens
 import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MojiljubimciScreen() {
-
+fun FormaEvidencijska(navController: NavController) {
 
     val context = LocalContext.current
-
     val scope = rememberCoroutineScope()
-
-    val dataStore = EvidencijaDataStore(context)
-
+    val dataStore = EvidencijaPreferencesDataStore(context)
+    //val sviZapisi = dataStore.vratiSveZapiseEvidencije.collectAsState(initial = emptyPreferences())
     val pohranjeniKljuč = dataStore.getKljuč.collectAsState(initial = "")
     val pohranjenoIme = dataStore.getIme.collectAsState(initial = "")
     val pohranjeniSpol = dataStore.getSpol.collectAsState(initial = "")
@@ -158,6 +162,31 @@ fun MojiljubimciScreen() {
                 color = Color.White,
                 fontSize = 18.sp
             )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            horizontalArrangement = Arrangement.Center
+        ){
+
+            Button(
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+                modifier = Modifier
+                    .padding(5.dp)
+                    .testTag("testTag_treci_navigacijskiButton"),
+                onClick = {
+                    navController.navigate(Screens.Zapisi.route)
+
+                }
+            ){
+                Text(
+                    text = "Dodaj novi",
+                    fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
 
 

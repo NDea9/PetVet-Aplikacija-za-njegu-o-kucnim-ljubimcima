@@ -95,7 +95,7 @@ fun PocetnaStranicaScreen(navController: NavController) {
                     .testTag("testTag_treci_navigacijskiButton"),
                 onClick = {
 
-                    navController.navigate(Screens.Mojiljubimci.route)
+                    navController.navigate(Screens.FormaEvidencijska.route)
                 }
             ){
                 Text(
@@ -105,6 +105,7 @@ fun PocetnaStranicaScreen(navController: NavController) {
                 )
             }
         }
+
 
     }
 }
