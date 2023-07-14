@@ -1,8 +1,9 @@
-package com.example.petvet_deanoc_josipstojanovic
+package com.example.petvet_deanoc_josipstojanovic.BezKorisno
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.petvet_deanoc_josipstojanovic.BezKorisno.DataStoreRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
