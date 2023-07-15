@@ -9,8 +9,15 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        mavenCentral()
+        maven {
+            credentials {
+                username = 'Noc'
+                password = 'Ugodan_Dan.365'
+            }
+            url = uri("https://repositories.tomtom.com/artifactory/maven")
+        }
     }
 }
+
 rootProject.name = "PetVet - DeaNoc - JosipStojanovic"
 include ':app'

@@ -28,6 +28,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+
+
     }
 
     buildTypes {
@@ -50,6 +53,7 @@ android {
         kotlinCompilerExtensionVersion '1.4.0'
     }
     packagingOptions {
+        jniLibs.pickFirsts.add("lib/**/libc++_shared.so") //Map_TomTom
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
@@ -74,6 +78,14 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-wms:6.1.11'
     implementation 'org.osmdroid:osmdroid-mapsforge:6.1.11'
     implementation "androidx.preference:preference-ktx:1.1.1"
+
+    //TomTom libraries
+    implementation "com.tomtom.sdk.maps:map-display:0.26.0"
+    implementation "com.tomtom.sdk.location:provider-android:0.26.0"
+    implementation "com.tomtom.sdk.search:search-online:0.26.0"
+    implementation "com.tomtom.sdk.routing:route-planner-online:0.26.0"
+
+
 
 
 
