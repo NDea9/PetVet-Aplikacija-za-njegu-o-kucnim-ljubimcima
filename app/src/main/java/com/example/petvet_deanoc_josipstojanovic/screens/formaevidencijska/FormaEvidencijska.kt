@@ -48,7 +48,7 @@ fun FormaEvidencijska(navController: NavController) {
     val scope = rememberCoroutineScope()
     val dataStore = EvidencijaPreferencesDataStore(context)
 
-    val stanje = dataStore.vratiSveZapiseEvidencije.collectAsState(initial = emptyPreferences())
+    val stanje = dataStore.vratiSveZapiseEvidencie.collectAsState(initial = emptyPreferences())
     val prefovi = stanje.value
 
     val pohranjeniKljuč = dataStore.getKljuč.collectAsState(initial = "")
