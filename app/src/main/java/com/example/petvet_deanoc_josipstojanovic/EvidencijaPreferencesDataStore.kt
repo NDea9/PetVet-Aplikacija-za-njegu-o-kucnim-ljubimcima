@@ -15,6 +15,7 @@ class EvidencijaPreferencesDataStore(private val context: Context) {
 
     companion object {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("KljučŽivotinja")
+
         val KLJUČ = stringPreferencesKey("ključ_zivotinja")
         val IME = stringPreferencesKey("ime")
         val SPOL = stringPreferencesKey("spol")

@@ -49,6 +49,11 @@ android {
 }
 
 dependencies {
+
+    // josip 15.7
+    implementation "io.insert-koin:koin-android:3.1.4"
+    implementation 'com.google.code.gson:gson:2.9.0'
+
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // optional - RxJava2 support

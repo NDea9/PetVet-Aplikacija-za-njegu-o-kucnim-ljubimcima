@@ -1,6 +1,8 @@
 package com.example.petvet_deanoc_josipstojanovic.screens.formaevidencijska
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -17,12 +19,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.navigation.NavController
 import com.example.petvet_deanoc_josipstojanovic.EvidencijaPreferencesDataStore
 import com.example.petvet_deanoc_josipstojanovic.navigation.Screens
 import kotlinx.coroutines.launch
 
+
+
+
+@Composable
+fun PreferencesItem(preferences: Preferences) {
+    val nameKey = stringPreferencesKey("ime")
+    val name: String? = preferences[nameKey]
+    // Use the name variable or other preferences as needed
+    // For example:
+    Text(text = name ?: "Default value")
+    // Add more composables as needed to display the preferences
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,7 +47,10 @@ fun FormaEvidencijska(navController: NavController) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val dataStore = EvidencijaPreferencesDataStore(context)
-    //val sviZapisi = dataStore.vratiSveZapiseEvidencije.collectAsState(initial = emptyPreferences())
+
+    val stanje = dataStore.vratiSveZapiseEvidencije.collectAsState(initial = emptyPreferences())
+    val prefovi = stanje.value
+
     val pohranjeniKljuč = dataStore.getKljuč.collectAsState(initial = "")
     val pohranjenoIme = dataStore.getIme.collectAsState(initial = "")
     val pohranjeniSpol = dataStore.getSpol.collectAsState(initial = "")
@@ -45,6 +64,9 @@ fun FormaEvidencijska(navController: NavController) {
     var kilaža_lj by remember { mutableStateOf("") }
     var prehrana_lj by remember { mutableStateOf("") }
     Column(modifier = Modifier.fillMaxSize()) {
+        LazyColumn {
+            //preferencesIte
+        }
 
         Text(
             modifier = Modifier
@@ -197,7 +219,7 @@ fun FormaEvidencijska(navController: NavController) {
 
 @Composable
 @Preview
-fun MojiljubimciScreenPreview() {
+fun Screens.FormaEvidencijskaPreview() {
     //DetaljiScreen()
 }
 
