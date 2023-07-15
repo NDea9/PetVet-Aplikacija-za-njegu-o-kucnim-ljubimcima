@@ -61,6 +61,11 @@ android {
 }
 
 dependencies {
+
+    // josip 15.7
+    implementation "io.insert-koin:koin-android:3.1.4"
+    implementation 'com.google.code.gson:gson:2.9.0'
+
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // optional - RxJava2 support
@@ -71,6 +76,7 @@ dependencies {
 
     implementation "androidx.window:window:1.0.0"
     implementation "androidx.window:window-testing:1.0.0"
+    implementation 'androidx.preference:preference-ktx:1.2.0'
     androidTestImplementation "androidx.navigation:navigation-testing:2.6.0"
 
     //Map

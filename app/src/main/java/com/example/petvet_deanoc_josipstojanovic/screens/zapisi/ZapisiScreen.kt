@@ -4,6 +4,8 @@ package com.example.petvet_deanoc_josipstojanovic.screens.zapisi
 import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,6 +31,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import com.example.petvet_deanoc_josipstojanovic.EvidencijaPreferencesDataStore
 import com.example.petvet_deanoc_josipstojanovic.data.Ljubimac
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -42,6 +45,11 @@ fun ZapisiScreen() {
             )
         }
 
+//        LazyColumn{
+//            items(klju;evi){
+//                   klju; ->
+//
+//           }}
     }
 }
 
