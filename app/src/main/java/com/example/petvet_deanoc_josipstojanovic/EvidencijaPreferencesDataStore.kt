@@ -24,7 +24,7 @@ class EvidencijaPreferencesDataStore(private val context: Context) {
         val PREHRANA = stringPreferencesKey("prehrana")
     }
     // vratiSveZap.. nije testirana! Ne radi 100 %
-    val vratiSveZapiseEvidencije: Flow<Preferences?> = context.dataStore.data
+    val vratiSveZapiseEvidencie: Flow<Preferences?> = context.dataStore.data
 
     // readAllKeys nije testirana! Ne radi 100 %
     suspend fun readAllKeys(): Set<Preferences.Key<*>>? {
