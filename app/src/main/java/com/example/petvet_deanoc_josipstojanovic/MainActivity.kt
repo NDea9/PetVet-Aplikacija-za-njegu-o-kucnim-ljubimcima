@@ -1,5 +1,8 @@
 package com.example.petvet_deanoc_josipstojanovic
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.petvet_deanoc_josipstojanovic.navigation.NavGraph
 import androidx.activity.viewModels
 import androidx.compose.material3.Text
+import androidx.core.content.ContextCompat
 import com.example.petvet_deanoc_josipstojanovic.data.LjubimacViewModel
 
 class MainActivity : ComponentActivity() {
@@ -22,6 +26,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+private fun hasLocationPermission(context: Context): Boolean {
+    val permission = Manifest.permission.ACCESS_FINE_LOCATION
+    return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+}
 
 @Preview(showBackground = true)
 @Composable
